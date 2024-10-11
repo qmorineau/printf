@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 14:43:43 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/11 19:26:16 by qmorinea         ###   ########.fr       */
+/*   Created: 2024/10/09 10:38:50 by qmorinea          #+#    #+#             */
+/*   Updated: 2024/10/09 10:38:50 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-int	ft_printf(const char *string, ...);
-#endif
+#include "libft.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	int	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] && s2[i] && s1[i] == s2[i] && n > 1)
+	{
+		i++;
+		n--;
+	}
+	return (((unsigned char)s1[i]) - ((unsigned char)s2[i]));
+}

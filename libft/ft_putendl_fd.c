@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 14:43:43 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/11 19:26:16 by qmorinea         ###   ########.fr       */
+/*   Created: 2024/10/09 10:37:30 by qmorinea          #+#    #+#             */
+/*   Updated: 2024/10/09 10:37:30 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-int	ft_printf(const char *string, ...);
-#endif
+#include "libft.h"
+
+void	ft_putendl_fd(char const *s, int fd)
+{
+	if (!s)
+		return ;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd(10, fd);
+}

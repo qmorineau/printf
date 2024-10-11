@@ -1,19 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 14:43:43 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/11 19:26:16 by qmorinea         ###   ########.fr       */
+/*   Created: 2024/10/09 10:38:34 by qmorinea          #+#    #+#             */
+/*   Updated: 2024/10/09 10:38:34 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-int	ft_printf(const char *string, ...);
-#endif
+#include "libft.h"
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	int	i;
+
+	if (!s || !(*f))
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		(*f)(i, &s[i]);
+		i++;
+	}
+}
+
+/* #include <stdio.h>
+
+int main (void)
+{
+	char s[] = "ABCDEF";
+	ft_striteri(s, (void *) &ft_test);
+	//ft_striteri(s, NULL);
+	printf("%s\n", s);
+} */

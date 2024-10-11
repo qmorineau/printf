@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 14:43:43 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/11 19:26:16 by qmorinea         ###   ########.fr       */
+/*   Created: 2024/10/09 10:36:50 by qmorinea          #+#    #+#             */
+/*   Updated: 2024/10/09 10:36:50 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-int	ft_printf(const char *string, ...);
-#endif
+#include "libft.h"
+
+t_list	*ft_lstnew(void	*content)
+{
+	t_list	*node;
+
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
+}

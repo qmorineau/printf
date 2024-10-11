@@ -1,19 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 14:43:43 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/11 19:26:16 by qmorinea         ###   ########.fr       */
+/*   Created: 2024/10/09 10:37:08 by qmorinea          #+#    #+#             */
+/*   Updated: 2024/10/09 10:37:08 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-int	ft_printf(const char *string, ...);
-#endif
+#include "libft.h"
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*ptr;
+	unsigned char	value;
+
+	ptr = (unsigned char *) s;
+	while (n > 0)
+	{
+		value = (unsigned char) c;
+		*ptr = value;
+		ptr++;
+		n--;
+	}
+	return (s);
+}
+
+/* #include <stdio.h>
+
+int main(void)
+{
+    char *s = "abcdefg";
+    char c = 90;
+    ft_memset(s, 'A', 3);
+    printf("%s\n", s);
+} */

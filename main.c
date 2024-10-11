@@ -1,4 +1,11 @@
+#include "printf.h"
+
+#include <stdio.h>
+
 int	main(void)
 {
-	ft_printf();
+	char a[] = "123";
+
+	ft_printf("abcdefg%s0123456%s789", "", "");
+	printf("%s", a);
 }
