@@ -6,7 +6,7 @@
 /*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:44:25 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/11 19:29:24 by qmorinea         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:15:16 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@
     //          if both are given.
 // 0 flags =
 
-
-int ft_count_args(va_list args)
+int	count_args(va_list args)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (va_arg(args, char*) != NULL)
 		i++;
@@ -61,12 +60,7 @@ int ft_count_args(va_list args)
 	return (i);
 }
 
-/* void	ft_putchar_fd(char c)
-{
-	write(1, &c, 1);
-} */
-
-int	ft_is_valid_flag(char c)
+int	is_valid_flag(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' 
 		|| c == 'u' || c == 'x' || c == 'X' || c == '%')
@@ -75,15 +69,52 @@ int	ft_is_valid_flag(char c)
 		return (0);
 }
 
+void	print_hexa_nbr(int nbr)
+{
+	char *hexa;
+	unsigned long long tmp;
+
+	hexa = "0123456789abcdef";
+	
+	if (nbr < 0)
+	{
+		ft_putchar_fd('-', 1);
+		nbr *= -1;
+	}
+	else if (nbr < 16)
+		ft_putchar_fd(hexa[nbr], 1);
+	else
+	{
+		tmp = nbr % 16;
+		print_hexa_nbr(nbr / 16);
+		ft_putchar_fd(hexa[tmp], 1);
+	}
+}
+
+void	print_hexa_ptr(unsigned long long ptr)
+{
+	char *hexa;
+	unsigned long long tmp;
+
+	hexa = "0123456789abcdef";
+
+	if (ptr < 16)
+		ft_putchar_fd(hexa[ptr], 1);
+	else
+	{
+		tmp = ptr % 16;
+		print_hexa_ptr(ptr / 16);
+		ft_putchar_fd(hexa[tmp], 1);
+	}
+}
+
 int	ft_printf(const char *string, ...)
 {
 	va_list	count_arg;
 	va_list args;
 	int		i;
-	/* int		arg_len; */
 
 	i = 0;
-	printf("\nstring = %s\n", string);
 	va_start(args, string);
 	va_copy(count_arg, args);
 	while (string[i])
@@ -93,9 +124,25 @@ int	ft_printf(const char *string, ...)
 			ft_putchar_fd(string[i], 1);
 			i++;
 		}
-		else if (ft_is_valid_flag(string[++i]))
+		else if (is_valid_flag(string[++i]))
 		{
-			printf("\nprint variable\n");
+			if (string[i] == 'd')
+				ft_putnbr_fd(va_arg(args, int), 1);
+			else if (string[i] == 's')
+				ft_putstr_fd(va_arg(args, char*), 1);
+			else if (string[i] == 'c')
+				ft_putchar_fd(va_arg(args, int), 1);
+			else if (string[i] == '%')
+				ft_putchar_fd('%', 1);
+			else if (string[i] == 'p')
+			{
+				ft_putstr_fd("0x", 1);
+				print_hexa_ptr(va_arg(args, long long));
+			}
+			else if (string[i] == 'x')
+				print_hexa_nbr(va_arg(args, int));
+			else
+				printf("\nprint variable\n");
 			i++;
 		}
 		else
@@ -109,9 +156,8 @@ int	ft_printf(const char *string, ...)
 		printf("i = %d, string = %s\n", i, va_arg(args, char*));
 		i++;
 	} */
-	printf("\nstring = %s\n", "coucou");
 	va_end(args);
-	return (1);
+	return (0);
 }
 
 // va_start(va_list ap, parmN)

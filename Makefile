@@ -6,7 +6,7 @@
 #    By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 11:58:09 by qmorinea          #+#    #+#              #
-#    Updated: 2024/10/11 19:34:19 by qmorinea         ###   ########.fr        #
+#    Updated: 2024/10/16 18:02:43 by qmorinea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ norm:
 	@norminette
 
 test: all
-	@$(CC) ./main.c -I $(INC_DIR) -L ./ -l ftprintf
+	@$(CC) ./main.c -g3 -I $(INC_DIR) -L ./ -l ftprintf
 	@./a.out
 
 .PHONY: all clean fclean re bonus norm test

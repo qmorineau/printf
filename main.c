@@ -4,8 +4,8 @@
 
 int	main(void)
 {
-	char a[] = "123";
-
-	ft_printf("abcdefg%s0123456%s789", "", "");
-	printf("%s", a);
+	char *i = "a";
+	ft_printf("dec: %d char: %c percent: %% string: %s p-hexa %p num-hexa %x", 42, 'c', "abcdef", &i, 2147483647);
+	printf("\n");
+	printf("dec: %d char: %c percent: %% string: %s p-hexa %p num-hexa %x", 42, 'c', "abcdef", &i, 2147483647);
 }
