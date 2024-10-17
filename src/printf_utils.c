@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   printf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 10:35:24 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/09 10:35:24 by qmorinea         ###   ########.fr       */
+/*   Created: 2024/10/17 15:46:58 by qmorinea          #+#    #+#             */
+/*   Updated: 2024/10/17 20:21:26 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_strlen(char *s)
 {
-	int	i;
-	int	sign;
-	int	result;
+	size_t	i;
 
 	i = 0;
-	sign = 1;
-	result = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+	while (s[i])
 		i++;
-	if (nptr[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (nptr[i] == '+')
-		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (result * sign);
+	return (i);
+}
+
+void	ft_putchar_fd(char c, int fd, int *count)
+{
+	write(fd, &c, 1);
+	count++;
+}
+
+void	ft_putstr_fd(char *s, int fd, int *count)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		ft_putchar_fd(s[i++], fd, count);
 }

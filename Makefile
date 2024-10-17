@@ -6,7 +6,7 @@
 #    By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 11:58:09 by qmorinea          #+#    #+#              #
-#    Updated: 2024/10/16 18:02:43 by qmorinea         ###   ########.fr        #
+#    Updated: 2024/10/17 13:08:15 by qmorinea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,12 @@ NAME = libftprintf.a
 # Directories
 SRC_DIR = src
 OBJ_DIR = obj
-INC_DIR = includes -I libft
+INC_DIR = includes
 
 # Source and Object files
 SRC = $(wildcard $(SRC_DIR)/*.c)
 SRC_OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 BONUS_OBJ = $(BONUS_SRC:$(BONUS_DIR)/%.c=$(OBJ_DIR)/%.o)
-LIBFT = ./libft
 
 # Colors
 GREEN = \033[0;32m
@@ -37,14 +36,10 @@ RESET = \033[0m
 all: $(NAME)
 
 # Linking object files
-$(NAME): makelibft $(SRC_OBJ)
+$(NAME): $(SRC_OBJ)
 	@ar rcs $(NAME) $(SRC_OBJ)
 	@echo "$(GREEN)Library $(NAME) created.$(RESET)"
 
-makelibft:
-	make -C $(LIBFT)
-	cp $(LIBFT)/libft.a .
-	mv libft.a $(NAME)
 # Compile source files to object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
@@ -66,7 +61,9 @@ norm:
 	@norminette
 
 test: all
-	@$(CC) ./main.c -g3 -I $(INC_DIR) -L ./ -l ftprintf
+	@$(CC) $(CFLAGS) ./main.c $(SRC_OBJ) -g3
 	@./a.out
 
 .PHONY: all clean fclean re bonus norm test
+
+# -L ./ -l ftprintf compile test
