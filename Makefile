@@ -6,7 +6,7 @@
 #    By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 11:58:09 by qmorinea          #+#    #+#              #
-#    Updated: 2024/10/17 13:08:15 by qmorinea         ###   ########.fr        #
+#    Updated: 2024/10/18 20:49:55 by qmorinea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,13 @@ OBJ_DIR = obj
 INC_DIR = includes
 
 # Source and Object files
-SRC = $(wildcard $(SRC_DIR)/*.c)
+SRC = $(SRC_DIR)/ft_printf.c\
+		$(SRC_DIR)/ft_printf_utils.c\
+		$(SRC_DIR)/print_from_flags.c\
+		$(SRC_DIR)/put_nbr_base.c
+INC = $(INC_DIR)/ft_printf.h
+
 SRC_OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-BONUS_OBJ = $(BONUS_SRC:$(BONUS_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Colors
 GREEN = \033[0;32m
@@ -41,29 +45,23 @@ $(NAME): $(SRC_OBJ)
 	@echo "$(GREEN)Library $(NAME) created.$(RESET)"
 
 # Compile source files to object files
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(GREEN)printf: Compiled: $<$(RESET)"
+	@echo "$(GREEN)Compiled: $<$(RESET)"
 
 # Clean up object files and the executable
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "$(RED)printf: Cleaned object files.$(RESET)"
+	@echo "$(RED)Cleaned object files.$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED)printf: Removed binary files.$(RESET)"
+	@echo "$(RED)Removed binary files.$(RESET)"
+
+debug:
+	@echo $(SRC_OBJ)
 
 re: fclean all
 
-norm:
-	@norminette
-
-test: all
-	@$(CC) $(CFLAGS) ./main.c $(SRC_OBJ) -g3
-	@./a.out
-
-.PHONY: all clean fclean re bonus norm test
-
-# -L ./ -l ftprintf compile test
+.PHONY: all clean fclean re

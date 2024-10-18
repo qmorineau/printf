@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   print_from_flags.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:27:02 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/18 10:05:38 by quentin          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:24:19 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 void	print_from_flags(va_list args, int *count, char c)
 {
 	if (c == 'd' || c == 'i')
-		put_nbr_base(va_arg(args, int), BASE_TEN, count, INT);
+		put_nbr_base(va_arg(args, long), BASE_TEN, count, INT);
 	else if (c == 's')
 		ft_putstr_fd(va_arg(args, char *), 1, count);
 	else if (c == 'c')

@@ -4,8 +4,11 @@
 int	main(void)
 {
 	char *s = NULL;
-	/* ft_printf("dec: %d char: %c percent: %% string: %s p-hexa %p num-hexa %x num-hexa %X\n", 42, '0', "abcdef", &i, 2147483647, -2147483647);
-	printf("dec: %d char: %c percent: %% string: %s p-hexa %p num-hexa %x num-hexa %X", 42, '0', "abcdef", &i, 2147483647, -2147483647); */n
+	char i = 'c';
+	ft_printf("ft = %d\n", ft_printf("%d", -2147483650));
+	printf("ft = %d\n", ft_printf("%d", -2147483650));
+	ft_printf("dec: %d char: %c percent: %% string: %s p-hexa %p num-hexa %x num-hexa %X\n", 42, '0', "abcdef", &i, 2147483647, -2147483647);
+	printf("dec: %d char: %c percent: %% string: %s p-hexa %p num-hexa %x num-hexa %X", 42, '0', "abcdef", &i, 2147483647, -2147483647);
 
 	// flag c
 	printf("\n\033[0;31mChar\033[0m\n");
@@ -25,6 +28,8 @@ int	main(void)
 	printf("pf = %d\n", printf("%d", -150));
 	ft_printf("ft = %d\n", ft_printf("%d", 2147483647));
 	printf("pf = %d\n", printf("%d", 2147483647));
+	ft_printf("ft = %d\n", ft_printf("%d", -2147483648));
+	//printf("pf = %d\n", printf("%d", -2147483647));
 
 	// flag i
 	printf("\n\033[0;31mInt I\033[0m\n");

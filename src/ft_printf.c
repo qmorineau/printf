@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:44:25 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/18 09:34:31 by quentin          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:30:55 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-//Bonus
-
-// manage # 'space' and + flag between % and the char
-// + flag = put the sign before any number
-// space flag = a blank shoud be left before a positive number
-// # flag = 
-//manage -O. flag
-// - flags = The converted value is to be left adjusted on the field boundary.
-//  (The default is right justification.)  The converted value is padded on the right with blanks, rather
-  //            than on the left with blanks or zeros.  A - overrides a 0
-    //          if both are given.
-// 0 flags =
 
 int	ft_printf(const char *string, ...)
 {
@@ -44,6 +31,8 @@ int	ft_printf(const char *string, ...)
 			print_from_flags(args, &count, string[i]);
 			i++;
 		}
+		if (count == -1)
+			return (-1);
 	}
 	va_end(args);
 	return (count);

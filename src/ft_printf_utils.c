@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_utils.c                                     :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:46:58 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/18 09:52:59 by quentin          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:33:26 by qmorinea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ int	ft_strlen(char *s)
 
 void	ft_putchar_fd(char c, int fd, int *count)
 {
-	write(fd, &c, 1);
-	(*count)++;
+	int	i;
+
+	i = write(fd, &c, 1);
+	if (i < 0 || (*count) == -1)
+		(*count) = -1;
+	else
+		(*count)++;
 }
 
 void	ft_putstr_fd(char *s, int fd, int *count)
@@ -39,5 +44,9 @@ void	ft_putstr_fd(char *s, int fd, int *count)
 		return ;
 	}
 	while (s[i])
+	{
 		ft_putchar_fd(s[i++], fd, count);
+		if (*count == -1)
+			return ;
+	}
 }
