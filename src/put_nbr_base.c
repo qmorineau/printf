@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   put_nbr_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:03:55 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/17 20:21:23 by qmorinea         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:24:42 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "../includes/ft_printf.h"
 
 static void	put_nbr_base_int(int nbr, char *base, int *count)
 {
@@ -20,9 +20,14 @@ static void	put_nbr_base_int(int nbr, char *base, int *count)
 	base_len = ft_strlen(base);
 	if (nbr < 0)
 	{
-		ft_putchar_fd('-', 1, count);
-		nbr *= -1;
-		put_nbr_base_int(nbr, base, count);
+		if (nbr == -2147483648)
+			ft_putstr_fd("-2147483648", 1, count);
+		else
+		{
+			ft_putchar_fd('-', 1, count);
+			nbr *= -1;
+			put_nbr_base_int(nbr, base, count);
+		}
 	}
 	else if (nbr < base_len)
 		ft_putchar_fd(base[nbr], 1, count);

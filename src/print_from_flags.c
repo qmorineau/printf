@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_from_flags.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmorinea <qmorinea@student.s19.be>         +#+  +:+       +#+        */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:27:02 by qmorinea          #+#    #+#             */
-/*   Updated: 2024/10/17 20:21:19 by qmorinea         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:05:38 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "../includes/ft_printf.h"
 
 void	print_from_flags(va_list args, int *count, char c)
 {
